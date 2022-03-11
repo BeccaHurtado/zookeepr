@@ -122,7 +122,23 @@ app.post('/api/animals', (req, res) => {
 
 });
 
+// directing to generate index.html
 app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+//directing to generate animals.html in index.html
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'))
+})
+
+//directing to generate zookeeper.js in ndex.html
+app.get('/zookeepers', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+// * acts as a wild card. Any route that wasn't previously defined will fall inder this request and will recieve the homepage as the response. Thus, requests for /about or /contact or /memebership will essentially be the same now
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
